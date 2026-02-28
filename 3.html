@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE_OUTFITS - Premium & Luxury Shirts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #ffd700;
+            --teal: #0fabbc;
+            --purple: #9d4edd;
+            --light: #f8f9fa;
+            --dark: #0d0d1a;
+            --gradient: linear-gradient(135deg, #1a1a2e, #16213e);
+            --gradient-accent: linear-gradient(135deg, #e94560, #9d4edd);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(233, 69, 96, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(233, 69, 96, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(233, 69, 96, 0.4); }
+        }
+
+        @keyframes spinLogo {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes cardFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            100% { transform: perspective(1000px) rotateY(180deg); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header {
+            background: rgba(26, 26, 46, 0.92);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s infinite alternate, spinLogo 30s linear infinite;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.4s;
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--gold); }
+
+        #hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.8s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            padding: 1.2rem 3.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(233,69,96,0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(233,69,96,0.6);
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            height: 520px;
+            perspective: 1000px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .product-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+        }
+
+        .card-front {
+            background: rgba(26,26,46,0.6);
+        }
+
+        .card-back {
+            background: rgba(26,26,46,0.9);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin: 0.8rem 0;
+        }
+
+        .add-to-cart {
+            background: var(--teal);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--purple);
+            transform: scale(1.1);
+        }
+
+        #testimonials {
+            background: var(--secondary);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-style: italic;
+        }
+
+        .newsletter {
+            text-align: center;
+            background: linear-gradient(135deg, #e94560, #9d4edd);
+            padding: 6rem 2rem;
+            border-radius: 30px;
+            margin: 4rem auto;
+            max-width: 900px;
+        }
+
+        .newsletter input {
+            padding: 1rem 1.5rem;
+            width: 60%;
+            max-width: 400px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter button {
+            padding: 1rem 2.5rem;
+            border: none;
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: bold;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter button:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: var(--dark);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: var(--light);
+            font-size: 2rem;
+            margin: 0 1.2rem;
+            transition: all 0.4s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3.2rem; }
+            nav a { margin: 0 0.8rem; font-size: 0.95rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ELITE_OUTFITS</div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#products">Shop</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#newsletter">Join Us</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>ELITE OUTFITS</h1>
+            <p>Premium shirts crafted for the modern gentleman. Style. Comfort. Excellence.</p>
+            <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Explore Collection</button>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Our Premium Collection</h2>
+        <div class="product-grid">
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://hips.hearstapps.com/hmg-prod/images/mhl-whitedressshirts-charlestyrwhitt-757-1-68dd2beb0c59e.jpg?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*" alt="Classic White Shirt">
+                        <div class="product-info">
+                            <h3>Classic White Elegance</h3>
+                            <p class="price">$59.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Classic White Elegance</h3>
+                        <p>Timeless cotton Oxford. Perfect fit for any occasion.</p>
+                        <p class="price">$59.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.ebayimg.com/images/g/uy0AAOSwwItkssvZ/s-l1200.jpg" alt="Blue Striped Shirt">
+                        <div class="product-info">
+                            <h3>Blue Pinstripe Power</h3>
+                            <p class="price">$64.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Blue Pinstripe Power</h3>
+                        <p>Crisp stripes with premium breathable fabric.</p>
+                        <p class="price">$64.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.ebayimg.com/images/g/YewAAOSwaAllnwoA/s-l1200.jpg" alt="Abercrombie Striped">
+                        <div class="product-info">
+                            <h3>Abercrombie Muscle Fit Stripe</h3>
+                            <p class="price">$72.00</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Abercrombie Muscle Fit Stripe</h3>
+                        <p>Modern slim fit with premium detailing.</p>
+                        <p class="price">$72.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://m.media-amazon.com/images/I/611q3PaE7eL._AC_UY1000_.jpg" alt="Graphic Tee Black">
+                        <div class="product-info">
+                            <h3>Timeless Graphic Black</h3>
+                            <p class="price">$44.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Timeless Graphic Black</h3>
+                        <p>Streetwear inspired bold print on premium cotton.</p>
+                        <p class="price">$44.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.ebayimg.com/images/g/XGoAAOSwW71nBUJG/s-l1200.jpg" alt="Predator Graphic">
+                        <div class="product-info">
+                            <h3>Predator Graphic Tee</h3>
+                            <p class="price">$49.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Predator Graphic Tee</h3>
+                        <p>High-contrast artistic print. Bold statement piece.</p>
+                        <p class="price">$49.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://m.media-amazon.com/images/I/61-4559-gJL._AC_UY1000_.jpg" alt="Light Denim Shirt">
+                        <div class="product-info">
+                            <h3>Light Wash Denim</h3>
+                            <p class="price">$68.00</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Light Wash Denim</h3>
+                        <p>Versatile casual denim with comfortable stretch.</p>
+                        <p class="price">$68.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.ebayimg.com/images/g/I74AAOSwnBBl1ki~/s-l1200.jpg" alt="Navy Polo">
+                        <div class="product-info">
+                            <h3>Luxury Navy Polo</h3>
+                            <p class="price">$79.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Luxury Navy Polo</h3>
+                        <p>Premium textured fabric. Timeless sophistication.</p>
+                        <p class="price">$79.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://www.dhresource.com/webp/m/0x0/f2/albu/g9/M00/AC/B7/rBVaVVxW9_2ARoc4AAED5l3d3ak386.jpg" alt="Navy Polo Premium">
+                        <div class="product-info">
+                            <h3>Elite Navy Polo Premium</h3>
+                            <p class="price">$89.00</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Elite Navy Polo Premium</h3>
+                        <p>Italian-inspired luxury cotton blend.</p>
+                        <p class="price">$89.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.ebayimg.com/images/g/tIUAAOSwiqRk6R1Y/s-l1200.jpg" alt="Red Black Flannel">
+                        <div class="product-info">
+                            <h3>Red Lumberjack Flannel</h3>
+                            <p class="price">$69.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Red Lumberjack Flannel</h3>
+                        <p>Thick warm cotton. Classic plaid pattern.</p>
+                        <p class="price">$69.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://m.media-amazon.com/images/I/71d+fhRzwNL._AC_UY1000_.jpg" alt="Maroon Flannel">
+                        <div class="product-info">
+                            <h3>Maroon Performance Flannel</h3>
+                            <p class="price">$74.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Maroon Performance Flannel</h3>
+                        <p>Soft brushed interior for all-day comfort.</p>
+                        <p class="price">$74.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/b122bc2e-2962-4f50-8d49-9fef9c5c0c66.__CR0,0,800,600_PT0_SX800_V1___.jpg" alt="Green Plaid">
+                        <div class="product-info">
+                            <h3>Forest Green Plaid</h3>
+                            <p class="price">$71.00</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Forest Green Plaid</h3>
+                        <p>Festive yet everyday wearable flannel.</p>
+                        <p class="price">$71.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card animate-on-scroll">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://i.fbcd.co/products/resized/resized-750-500/preview-7-e2ae3d8117590a5583da6f332076ee1dc4de2c4b2e161b093d5039791d1bf29a.jpg" alt="Streetwear Graphic">
+                        <div class="product-info">
+                            <h3>Progress Streetwear Tee</h3>
+                            <p class="price">$48.99</p>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Progress Streetwear Tee</h3>
+                        <p>Bold cultural statement oversized fit.</p>
+                        <p class="price">$48.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial animate-on-scroll">
+                "Best shirts I've ever owned. The quality is unreal!"
+                <p style="margin-top:1rem; font-style:normal; color:var(--gold);">- Ahmed, Dubai</p>
+            </div>
+            <div class="testimonial animate-on-scroll">
+                "Fast delivery and amazing fit. Will buy again!"
+                <p style="margin-top:1rem; font-style:normal; color:var(--gold);">- Sara, Karachi</p>
+            </div>
+            <div class="testimonial animate-on-scroll">
+                "These feel luxurious without the insane price tag."
+                <p style="margin-top:1rem; font-style:normal; color:var(--gold);">- Bilal, Lahore</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter animate-on-scroll">
+        <h2>Join the Elite Family</h2>
+        <p style="font-size:1.4rem; margin:1.5rem 0;">Get 15% off your first order + exclusive drops</p>
+        <form>
+            <input type="email" placeholder="Enter your email..." required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin:2rem 0;">© 2026 ELITE_OUTFITS. Crafted with passion.</p>
+    </footer>
+
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Add to Cart
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Added to your elite cart! 🚀');
+        });
+    });
+
+    // Newsletter
+    const newsletterForm = document.querySelector('.newsletter form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Welcome to the elite circle! Check your inbox soon.');
+        });
+    }
+
+});
+    </script>
+
+</body>
+</html>
